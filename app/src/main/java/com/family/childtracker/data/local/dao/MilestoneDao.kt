@@ -11,6 +11,9 @@ interface MilestoneDao {
 
     @Query("SELECT * FROM milestones WHERE childId = :childId AND category = :category ORDER BY achievementDate DESC")
     fun getMilestonesByCategory(childId: String, category: String): Flow<List<MilestoneEntity>>
+    
+    @Query("SELECT * FROM milestones ORDER BY achievementDate DESC")
+    suspend fun getAllMilestones(): List<MilestoneEntity>
 
     @Query("SELECT * FROM milestones WHERE id = :id")
     suspend fun getMilestoneById(id: String): MilestoneEntity?

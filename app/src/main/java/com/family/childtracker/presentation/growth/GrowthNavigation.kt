@@ -33,38 +33,53 @@ fun GrowthNavigation(
     val formState by viewModel.formState.collectAsState()
 
     var showEntryScreen by remember { mutableStateOf(false) }
+    var showChartScreen by remember { mutableStateOf(false) }
 
-    if (showEntryScreen) {
-        GrowthEntryScreen(
-            formState = formState,
-            onRecordDateChanged = viewModel::onRecordDateChanged,
-            onHeightChanged = viewModel::onHeightChanged,
-            onWeightChanged = viewModel::onWeightChanged,
-            onHeadCircumferenceChanged = viewModel::onHeadCircumferenceChanged,
-            onNotesChanged = viewModel::onNotesChanged,
-            onSave = {
-                viewModel.saveGrowthRecord()
-                showEntryScreen = false
-            },
-            onCancel = {
-                viewModel.cancelEditing()
-                showEntryScreen = false
+    when {
+        showChartScreen -> {
+            val successState = uiState as? GrowthUiState.Success
+            if (successState != null) {
+                GrowthChartScreen(
+                    records = successState.records,
+                    calculatePercentiles = viewModel::calculatePercentiles,
+                    onNavigateBack = { showChartScreen = false }
+                )
             }
-        )
-    } else {
-        GrowthListScreen(
-            uiState = uiState,
-            onAddRecord = {
-                viewModel.cancelEditing()
-                showEntryScreen = true
-            },
-            onEditRecord = { record ->
-                viewModel.startEditingRecord(record)
-                showEntryScreen = true
-            },
-            onDeleteRecord = viewModel::deleteRecord,
-            calculatePercentiles = viewModel::calculatePercentiles,
-            onNavigateBack = onNavigateBack
-        )
+        }
+        showEntryScreen -> {
+            GrowthEntryScreen(
+                formState = formState,
+                onRecordDateChanged = viewModel::onRecordDateChanged,
+                onHeightChanged = viewModel::onHeightChanged,
+                onWeightChanged = viewModel::onWeightChanged,
+                onHeadCircumferenceChanged = viewModel::onHeadCircumferenceChanged,
+                onNotesChanged = viewModel::onNotesChanged,
+                onSave = {
+                    viewModel.saveGrowthRecord()
+                    showEntryScreen = false
+                },
+                onCancel = {
+                    viewModel.cancelEditing()
+                    showEntryScreen = false
+                }
+            )
+        }
+        else -> {
+            GrowthListScreen(
+                uiState = uiState,
+                onAddRecord = {
+                    viewModel.cancelEditing()
+                    showEntryScreen = true
+                },
+                onEditRecord = { record ->
+                    viewModel.startEditingRecord(record)
+                    showEntryScreen = true
+                },
+                onDeleteRecord = viewModel::deleteRecord,
+                onViewCharts = { showChartScreen = true },
+                calculatePercentiles = viewModel::calculatePercentiles,
+                onNavigateBack = onNavigateBack
+            )
+        }
     }
 }

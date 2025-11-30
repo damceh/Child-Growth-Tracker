@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.Flow
 interface ChildProfileDao {
     @Query("SELECT * FROM child_profiles ORDER BY createdAt DESC")
     fun getAllProfiles(): Flow<List<ChildProfileEntity>>
+    
+    @Query("SELECT * FROM child_profiles ORDER BY createdAt DESC")
+    suspend fun getAllProfilesList(): List<ChildProfileEntity>
 
     @Query("SELECT * FROM child_profiles WHERE id = :id")
     suspend fun getProfileById(id: String): ChildProfileEntity?

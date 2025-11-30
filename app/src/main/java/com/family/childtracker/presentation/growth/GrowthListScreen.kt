@@ -22,6 +22,7 @@ fun GrowthListScreen(
     onAddRecord: () -> Unit,
     onEditRecord: (GrowthRecord) -> Unit,
     onDeleteRecord: (String) -> Unit,
+    onViewCharts: () -> Unit,
     calculatePercentiles: (GrowthRecord) -> CalculateGrowthPercentilesUseCase.PercentileResult?,
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier
@@ -33,6 +34,13 @@ fun GrowthListScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    if (uiState is GrowthUiState.Success && uiState.records.isNotEmpty()) {
+                        IconButton(onClick = onViewCharts) {
+                            Icon(Icons.Default.ShowChart, contentDescription = "View charts")
+                        }
                     }
                 }
             )

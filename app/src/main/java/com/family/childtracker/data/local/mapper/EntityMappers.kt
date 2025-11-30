@@ -180,7 +180,13 @@ fun AppSettingsEntity.toDomain(): AppSettings {
         id = id,
         openRouterApiKey = openRouterApiKey,
         selectedModel = selectedModel,
-        autoGenerateWeeklySummary = autoGenerateWeeklySummary
+        autoGenerateWeeklySummary = autoGenerateWeeklySummary,
+        cachedModelsJson = cachedModelsJson,
+        modelsCacheTimestamp = modelsCacheTimestamp,
+        biometricAuthEnabled = biometricAuthEnabled,
+        appLockEnabled = appLockEnabled,
+        pinCode = pinCode,
+        autoLockTimeoutMinutes = autoLockTimeoutMinutes
     )
 }
 
@@ -189,6 +195,12 @@ fun AppSettings.toEntity(): AppSettingsEntity {
         id = id,
         openRouterApiKey = openRouterApiKey,
         selectedModel = selectedModel,
-        autoGenerateWeeklySummary = autoGenerateWeeklySummary
+        autoGenerateWeeklySummary = autoGenerateWeeklySummary,
+        cachedModelsJson = cachedModelsJson,
+        modelsCacheTimestamp = modelsCacheTimestamp,
+        biometricAuthEnabled = biometricAuthEnabled,
+        appLockEnabled = appLockEnabled,
+        pinCode = pinCode,
+        autoLockTimeoutMinutes = autoLockTimeoutMinutes
     )
 }

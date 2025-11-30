@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.Flow
 interface GrowthRecordDao {
     @Query("SELECT * FROM growth_records WHERE childId = :childId ORDER BY recordDate DESC")
     fun getRecordsByChildId(childId: String): Flow<List<GrowthRecordEntity>>
+    
+    @Query("SELECT * FROM growth_records ORDER BY recordDate DESC")
+    suspend fun getAllRecords(): List<GrowthRecordEntity>
 
     @Query("SELECT * FROM growth_records WHERE id = :id")
     suspend fun getRecordById(id: String): GrowthRecordEntity?

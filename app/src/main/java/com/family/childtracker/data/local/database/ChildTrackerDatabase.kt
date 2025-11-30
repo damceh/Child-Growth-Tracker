@@ -2,8 +2,10 @@ package com.family.childtracker.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.family.childtracker.data.local.dao.*
 import com.family.childtracker.data.local.entity.*
+import com.family.childtracker.data.local.encryption.EncryptedTypeConverters
 
 @Database(
     entities = [
@@ -16,9 +18,10 @@ import com.family.childtracker.data.local.entity.*
         WeeklySummaryEntity::class,
         AppSettingsEntity::class
     ],
-    version = 1,
+    version = 4, // Incremented for biometric authentication fields
     exportSchema = true
 )
+@TypeConverters(EncryptedTypeConverters::class)
 abstract class ChildTrackerDatabase : RoomDatabase() {
     abstract fun childProfileDao(): ChildProfileDao
     abstract fun growthRecordDao(): GrowthRecordDao

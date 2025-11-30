@@ -27,6 +27,8 @@ fun ProfileListScreen(
     onAddProfileClick: () -> Unit,
     onDeleteProfile: (String) -> Unit,
     onViewGrowth: (ChildProfile) -> Unit,
+    onViewMilestones: ((ChildProfile) -> Unit)? = null,
+    onViewBehavior: ((ChildProfile) -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -75,7 +77,9 @@ fun ProfileListScreen(
                                 profile = profile,
                                 onClick = { onProfileClick(profile) },
                                 onDelete = { onDeleteProfile(profile.id) },
-                                onViewGrowth = { onViewGrowth(profile) }
+                                onViewGrowth = { onViewGrowth(profile) },
+                                onViewMilestones = onViewMilestones?.let { { it(profile) } },
+                                onViewBehavior = onViewBehavior?.let { { it(profile) } }
                             )
                         }
                     }
@@ -91,6 +95,8 @@ private fun ProfileCard(
     onClick: () -> Unit,
     onDelete: () -> Unit,
     onViewGrowth: () -> Unit,
+    onViewMilestones: (() -> Unit)? = null,
+    onViewBehavior: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -141,24 +147,55 @@ private fun ProfileCard(
                 }
             }
             
-            Row(
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(
-                    onClick = onViewGrowth,
-                    modifier = Modifier.weight(1f)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("View Growth")
+                    Button(
+                        onClick = onViewGrowth,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("Growth")
+                    }
+                    if (onViewMilestones != null) {
+                        Button(
+                            onClick = onViewMilestones,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Milestones")
+                        }
+                    }
                 }
-                OutlinedButton(
-                    onClick = onClick,
-                    modifier = Modifier.weight(1f)
+                if (onViewBehavior != null) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = onViewBehavior,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text("Behavior")
+                        }
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("Edit Profile")
-                }
-                TextButton(onClick = { showDeleteDialog = true }) {
-                    Text("Delete")
+                    OutlinedButton(
+                        onClick = onClick,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("Edit Profile")
+                    }
+                    TextButton(onClick = { showDeleteDialog = true }) {
+                        Text("Delete")
+                    }
                 }
             }
         }

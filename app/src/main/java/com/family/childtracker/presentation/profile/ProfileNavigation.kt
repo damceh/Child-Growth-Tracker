@@ -7,16 +7,20 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.family.childtracker.data.local.database.DatabaseProvider
 import com.family.childtracker.presentation.growth.GrowthNavigation
+import com.family.childtracker.presentation.milestone.milestoneNavigation
 
 const val PROFILE_LIST_ROUTE = "profile_list"
 const val PROFILE_ADD_ROUTE = "profile_add"
 const val PROFILE_EDIT_ROUTE = "profile_edit/{profileId}"
 const val GROWTH_TRACKING_ROUTE = "growth_tracking/{profileId}"
+const val MILESTONE_TRACKING_ROUTE = "milestone_tracking/{profileId}"
 
 fun NavGraphBuilder.profileNavGraph(
     navController: NavHostController,
-    viewModel: ChildProfileViewModel
+    viewModel: ChildProfileViewModel,
+    databaseProvider: DatabaseProvider? = null
 ) {
     composable(PROFILE_LIST_ROUTE) {
         val profiles by viewModel.profiles.collectAsStateWithLifecycle()
@@ -47,6 +51,12 @@ fun NavGraphBuilder.profileNavGraph(
             },
             onViewGrowth = { profile ->
                 navController.navigate("growth_tracking/${profile.id}")
+            },
+            onViewMilestones = { profile ->
+                navController.navigate("milestone_timeline/${profile.id}")
+            },
+            onViewBehavior = { profile ->
+                navController.navigate("behavior_list/${profile.id}")
             }
         )
     }
@@ -100,5 +110,10 @@ fun NavGraphBuilder.profileNavGraph(
                 }
             )
         }
+    }
+
+    // Add milestone navigation if database provider is available
+    if (databaseProvider != null) {
+        milestoneNavigation(navController, databaseProvider)
     }
 }

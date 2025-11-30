@@ -31,7 +31,7 @@
   - Implement growth percentile calculation logic
   - _Requirements: 2.1, 2.2, 2.3, 2.5_
 
-- [ ] 5. Implement growth visualization
+- [x] 5. Implement growth visualization
   - Integrate charting library (MPAndroidChart or Vico)
   - Create chart composables for height, weight, and head circumference trends
   - Implement data transformation for chart display
@@ -39,7 +39,7 @@
   - Build chart screen with tab navigation between metrics
   - _Requirements: 2.4_
 
-- [ ] 6. Build milestone tracking module
+- [x] 6. Build milestone tracking module
   - Create Milestone domain models with category enum
   - Implement milestone entry form with category selector and date picker
   - Add photo attachment capability using Android photo picker
@@ -48,7 +48,7 @@
   - Add edit and delete functionality for milestones
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
 
-- [ ] 7. Implement daily behavior tracking
+- [x] 7. Implement daily behavior tracking
   - Create BehaviorEntry domain models with mood and habit enums
   - Build quick-entry behavior form with emoji selectors and rating scales
   - Implement calendar view for behavior entries
@@ -56,7 +56,7 @@
   - Create behavior entry list view with date filtering
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 8. Build parenting tips module
+- [x] 8. Build parenting tips module
   - Create ParentingTip domain models with categories and age ranges
   - Populate initial tips database with sample content
   - Implement daily tip display on dashboard with rotation logic
@@ -66,7 +66,7 @@
   - Add age-appropriate filtering based on child's date of birth
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 9. Create dashboard and navigation
+- [x] 9. Create dashboard and navigation
   - Build main dashboard screen with summary cards
   - Implement bottom navigation bar for main sections
   - Add floating action button for quick data entry
@@ -75,7 +75,7 @@
   - Display latest growth, milestone, and behavior summaries
   - _Requirements: 6.1, 6.2, 8.1_
 
-- [ ] 10. Implement OpenRouter API client
+- [x] 10. Implement OpenRouter API client
   - Create OpenRouter API service interface with Retrofit or Ktor
   - Implement request/response data models for chat completions
   - Add authentication header injection with API key
@@ -84,7 +84,7 @@
   - Add retry logic with exponential backoff
   - _Requirements: 9.2, 9.6, 11.6_
 
-- [ ] 11. Build API key configuration
+- [x] 11. Build API key configuration
   - Create AppSettings entity and DAO
   - Implement EncryptedSharedPreferences for API key storage
   - Build settings screen UI for API key input
@@ -93,7 +93,7 @@
   - Create use case for validating API key
   - _Requirements: 11.1, 11.2, 11.3, 11.6_
 
-- [ ] 12. Implement AI model selection
+- [x] 12. Implement AI model selection
   - Create API endpoint for fetching available models
   - Implement model list caching with daily refresh
   - Build model selector dropdown in settings
@@ -101,7 +101,7 @@
   - Display model information (name, description, cost)
   - _Requirements: 9.3, 11.4, 11.5_
 
-- [ ] 13. Build AI chat interface
+- [x] 13. Build AI chat interface
   - Create ChatMessage entity and DAO for conversation history
   - Implement chat screen UI with message list and input field
   - Build message composables for user and assistant messages
@@ -112,7 +112,7 @@
   - Handle API key missing state with prompt to configure
   - _Requirements: 9.1, 9.2, 9.4, 9.5, 9.6, 9.7_
 
-- [ ] 14. Implement weekly summary generation
+- [x] 14. Implement weekly summary generation
   - Create WeeklySummary entity and DAO
   - Build data aggregation logic for past 7 days (growth, milestones, behaviors)
   - Create summary prompt template with child data
@@ -121,7 +121,7 @@
   - Add manual summary generation trigger
   - _Requirements: 10.2, 10.3, 10.5, 10.6_
 
-- [ ] 15. Set up automatic weekly summary generation
+- [x] 15. Set up automatic weekly summary generation
   - Implement WorkManager for background task scheduling
   - Create weekly summary worker that runs every Sunday at 8 PM
   - Add notification when summary is ready
@@ -130,14 +130,14 @@
   - Configure worker constraints (network required)
   - _Requirements: 10.1, 10.4, 10.7, 11.7_
 
-- [ ] 16. Implement data encryption
+- [x] 16. Implement data encryption
   - Set up Android Keystore for key generation
   - Implement encryption/decryption utilities using AES-256
   - Encrypt sensitive fields in database (child name, notes, API key)
   - Add migration for existing unencrypted data
   - _Requirements: 7.2, 11.2_
 
-- [ ] 17. Add biometric authentication
+- [x] 17. Add biometric authentication
   - Implement BiometricPrompt for fingerprint/face recognition
   - Create app lock screen with PIN fallback
   - Add auto-lock after inactivity timer
@@ -145,7 +145,7 @@
   - Implement lock/unlock state management
   - _Requirements: 7.3_
 
-- [ ] 18. Build data export and import
+- [x] 18. Build data export and import
   - Create JSON serialization for all data entities
   - Implement export functionality to generate backup file
   - Build import functionality to restore from backup
@@ -154,7 +154,7 @@
   - Add encryption option for exported files
   - _Requirements: 7.4, 7.5_
 
-- [ ] 19. Implement summary reports and sharing
+- [x] 19. Implement summary reports and sharing
   - Create monthly summary report generation logic
   - Build PDF generation for summary reports
   - Implement image export for summaries
@@ -163,7 +163,7 @@
   - Highlight significant changes in reports
   - _Requirements: 8.2, 8.3, 8.4, 8.5_
 
-- [ ] 20. Polish UI and optimize performance
+- [x] 20. Polish UI and optimize performance
   - Apply Material Design 3 theming with custom color palette
   - Implement loading states and error messages throughout app
   - Add input validation with inline error messages

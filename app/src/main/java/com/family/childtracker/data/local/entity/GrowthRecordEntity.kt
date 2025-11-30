@@ -4,6 +4,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.family.childtracker.data.local.encryption.EncryptedTypeConverters
 
 @Entity(
     tableName = "growth_records",
@@ -25,6 +27,7 @@ data class GrowthRecordEntity(
     val height: Float?,
     val weight: Float?,
     val headCircumference: Float?,
-    val notes: String?,
+    @TypeConverters(EncryptedTypeConverters::class)
+    val notes: String?, // Encrypted
     val createdAt: Long // Stored as epoch millis
 )

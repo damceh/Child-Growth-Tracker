@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.Flow
 interface BehaviorEntryDao {
     @Query("SELECT * FROM behavior_entries WHERE childId = :childId ORDER BY entryDate DESC")
     fun getEntriesByChildId(childId: String): Flow<List<BehaviorEntryEntity>>
+    
+    @Query("SELECT * FROM behavior_entries ORDER BY entryDate DESC")
+    suspend fun getAllEntries(): List<BehaviorEntryEntity>
 
     @Query("SELECT * FROM behavior_entries WHERE id = :id")
     suspend fun getEntryById(id: String): BehaviorEntryEntity?
